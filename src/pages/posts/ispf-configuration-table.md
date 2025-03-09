@@ -55,6 +55,8 @@ Then
 
 This converted the load module back to a kewyord format specified on the initial panel.
 
+### The ISPF_TEMPORARY_DATA_SET_QUALIFIER keyword
+
 Now
 1. Select option 2 _Edit Keyword File Configuration Table_
 1. Find `ISPF_TEMPORARY_DATA_SET_QUALIFIER` and see that it is defined as
@@ -69,10 +71,19 @@ The fix was to change the `ISPF_TEMPORARY_DATA_SET_QUALIFIER` to
 ```
 ISPF_TEMPORARY_DATA_SET_QUALIFIER           = &SYSNAME
 ```
+
 1. Exit the editor via PF03
 1. Let the utility verify the table.
 1. On the main panel select option 4 _Build Configuration Table Load Module_
 
 After logging out of TSO and logging back in all worked.
 
-Note: This is a shortened version of the story. There was a number of try and fail steps in between.
+#### Comment out instead
+Another possibility instead of changing the value of `ISPF_TEMPORARY_DATA_SET_QUALIFIER` is to completely remove it or comment it out
+by placing `/*` to the first two columns or the table record.
+
+That way the extra qualifier is not used at all and temp datasets are stored directly at `&SYSUID..SPFLOGx.LIST` instead of `&SYSUID..<qual>.SPFLOGx.LIST`.
+
+## P.S.
+
+This is a shortened version of the story. There was a number of try and fail steps in between.

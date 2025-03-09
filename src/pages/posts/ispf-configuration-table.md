@@ -65,9 +65,7 @@ ISPF_TEMPORARY_DATA_SET_QUALIFIER           = &SYSNAME(5:4)
 
 Now it all made sense. It was most likely copied from another system which had 8 character `&SYSNAME` and only the last 4 (positions 5-8) were use. Well my system only had a 4 character name and that is why it was failing.
 
-The fix was:
-
-1. Change `ISPF_TEMPORARY_DATA_SET_QUALIFIER` to
+The fix was to change the `ISPF_TEMPORARY_DATA_SET_QUALIFIER` to
 ```
 ISPF_TEMPORARY_DATA_SET_QUALIFIER           = &SYSNAME
 ```
@@ -77,4 +75,4 @@ ISPF_TEMPORARY_DATA_SET_QUALIFIER           = &SYSNAME
 
 After logging out of TSO and logging back in all worked.
 
-Note: This is a shoretened version of the story. There was a number of try and fail steps in between.
+Note: This is a shortened version of the story. There was a number of try and fail steps in between.
